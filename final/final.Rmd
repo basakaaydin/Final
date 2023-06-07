@@ -72,17 +72,18 @@ adult <- read_csv(here("adult.data.csv"))
 
 Rmd dosyasında kod bloklarının bazılarında kod seçeneklerinin düzenlendiğine dikkat edin. 
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 library(xtable) 
+# devtools::install_github("emraher/summarytools")
 library(summarytools)
 st_options(lang = "tr")
 ```
 
 `echo=FALSE` seçeneği ile kodların türetilen pdf dosyasında görünmesini engelleyin ve sonuçlarınızı tablo halinde rapor edin.
 
-```{r results='asis', echo=FALSE}
+```{r echo=FALSE, results='asis'}
 survey %>%
-  select("race", "sex", "Education", "hours per week", "yearly income") %>% 
+  select("sex", "credits", "handedness", "height", "handspan") %>% 
   descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
   xtable(caption = "Özet İstatistikler",
          label = "tab:ozet",
